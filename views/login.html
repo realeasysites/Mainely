@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in · Mainely Insulation and Weatherization leads</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --spruce:#10260d; --frost:#eff4ed; --amber:#3da433; --ink:#1b2a19; --muted:#55654f; --line:#d3dfcf; --err:#b42318; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; background:var(--frost); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); padding:16px; }
+  form { width:100%; max-width:360px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:28px; }
+  h1 { font-size:1.25rem; margin:0 0 4px; color:var(--spruce); }
+  p.sub { margin:0 0 20px; color:var(--muted); font-size:.95rem; }
+  label { display:block; font-weight:600; font-size:.9rem; margin:14px 0 6px; }
+  input { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; }
+  input:focus-visible, button:focus-visible { outline:3px solid var(--amber); outline-offset:2px; }
+  button { margin-top:20px; width:100%; padding:12px; border:0; border-radius:8px; background:var(--spruce); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+  .msg { display:none; margin:0 0 12px; padding:10px 12px; border-radius:8px; background:#fdecea; color:var(--err); font-size:.9rem; }
+  .msg.show { display:block; }
+</style>
+</head>
+<body>
+<form method="post" action="/admin/login">
+  <h1>Lead dashboard</h1>
+  <p class="sub">Mainely Insulation and Weatherization estimate requests</p>
+  <p class="msg" id="msg" role="alert"></p>
+  <label for="u">Username</label>
+  <input id="u" name="username" autocomplete="username" required>
+  <label for="p">Password</label>
+  <input id="p" name="password" type="password" autocomplete="current-password" required>
+  <button type="submit">Sign in</button>
+</form>
+<script>
+  const e = new URLSearchParams(location.search).get('e');
+  const text = {
+    bad: 'That username and password don’t match. Try again.',
+    wait: 'Too many sign-in attempts. Wait 15 minutes, then try again.',
+    setup: 'Sign-in is turned off until ADMIN_PASSWORD (8+ characters) is set on the server.'
+  }[e];
+  if (text) { const m = document.getElementById('msg'); m.textContent = text; m.classList.add('show'); }
+</script>
+</body>
+</html>

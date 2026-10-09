@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#10260d">
+<title>Leads · Mainely Insulation and Weatherization</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --spruce:#10260d; --spruce-2:#1d3a19; --frost:#eff4ed; --brand:#3da433; --deep:#1d5d16; --ink:#1b2a19; --muted:#55654f; --line:#d3dfcf; --err:#b42318; --warn:#b54708; --warn-bg:#fff4e5; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--frost); font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); }
+  header { background:var(--spruce); color:#fff; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  header .brand { display:flex; align-items:center; gap:12px; }
+  header .brand img { height:38px; background:#fff; border-radius:6px; padding:3px 6px; }
+  header h1 { font-size:1.02rem; margin:0; line-height:1.2; }
+  header h1 small { display:block; font-weight:500; opacity:.75; font-size:.82rem; }
+  header .actions { display:flex; gap:8px; }
+  header a, header button { color:#0a1a08; background:var(--brand); border:0; border-radius:6px; padding:8px 12px; font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
+  header form { margin:0; }
+  header .ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.4); }
+  main { max-width:1120px; margin:0 auto; padding:20px 16px 60px; }
+
+  .alert { display:none; background:var(--warn-bg); color:var(--warn); border:1px solid #f6d3a8; border-radius:10px; padding:12px 14px; margin-bottom:16px; font-weight:600; }
+  .alert.show { display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  .alert button { font:inherit; font-weight:700; border:0; border-radius:6px; padding:6px 12px; background:var(--warn); color:#fff; cursor:pointer; }
+
+  .stats { display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:10px; margin-bottom:12px; }
+  .stat { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .stat b { display:block; font-size:1.7rem; line-height:1.1; color:var(--spruce); }
+  .stat span { color:var(--muted); font-size:.85rem; }
+  .breakdown { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .card h2 { font-size:.9rem; margin:0 0 8px; color:var(--muted); font-weight:600; }
+  .bars { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+  .bars li { display:grid; grid-template-columns:minmax(0,1fr) 34px; gap:8px; align-items:center; font-size:.9rem; }
+  .bars .bar { grid-column:1 / -1; height:6px; border-radius:3px; background:var(--frost); overflow:hidden; margin-top:-2px; }
+  .bars .bar i { display:block; height:100%; background:var(--brand); border-radius:3px; }
+  .bars .n { text-align:right; font-weight:700; }
+  .bars li.none { display:block; color:var(--muted); font-size:.9rem; }
+  @media (max-width:860px) { .stats { grid-template-columns:repeat(2, minmax(0,1fr)); } .stats .stat:last-child { grid-column:1 / -1; } .breakdown { grid-template-columns:1fr; } }
+
+  .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .tabs { display:flex; gap:6px; flex-wrap:wrap; }
+  .tabs button { border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; cursor:pointer; text-transform:capitalize; }
+  .tabs button[aria-pressed="true"] { background:var(--spruce); color:#fff; border-color:var(--spruce); }
+  .tabs .n { opacity:.7; margin-left:4px; }
+  .search { border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; min-width:220px; background:#fff; }
+
+  .lead { background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:12px; display:grid; grid-template-columns:1fr 270px; gap:16px; }
+  .lead.new { border-left:5px solid var(--brand); }
+  .lead.overdue { border-left-color:var(--warn); }
+  .lead h3 { margin:0 0 2px; font-size:1.08rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .tag { font-size:.72rem; font-weight:700; border-radius:999px; padding:2px 8px; background:var(--frost); color:var(--deep); }
+  .tag.warn { background:var(--warn-bg); color:var(--warn); }
+  .meta { color:var(--muted); font-size:.85rem; margin-bottom:10px; }
+  .quick { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .quick a { text-decoration:none; font-weight:700; font-size:.9rem; padding:7px 12px; border-radius:6px; border:1px solid var(--line); color:var(--spruce); }
+  .quick a.primary { background:var(--brand); border-color:var(--brand); color:#0a1a08; }
+  dl { margin:0; display:grid; grid-template-columns:max-content 1fr; gap:3px 12px; font-size:.92rem; }
+  dt { color:var(--muted); }
+  dd { margin:0; white-space:pre-wrap; word-break:break-word; }
+  .side label { display:block; font-size:.8rem; font-weight:600; color:var(--muted); margin:0 0 4px; }
+  .side select, .side textarea { width:100%; border:1px solid var(--line); border-radius:6px; padding:7px 8px; font:inherit; }
+  .side textarea { min-height:90px; margin-top:6px; resize:vertical; }
+  .side .row { display:flex; gap:8px; margin-top:8px; }
+  .side button { flex:1; border:0; border-radius:6px; padding:8px; font:inherit; font-weight:600; cursor:pointer; background:var(--spruce); color:#fff; }
+  .side button.del { flex:0 0 auto; background:#fff; color:var(--err); border:1px solid #f1c7c2; }
+  .saved { font-size:.8rem; color:#1a7f4b; min-height:1.2em; margin-top:4px; }
+  .empty { text-align:center; color:var(--muted); padding:48px 16px; background:#fff; border:1px dashed var(--line); border-radius:10px; }
+  .err { color:var(--err); }
+  :focus-visible { outline:3px solid var(--brand); outline-offset:2px; }
+  @media (max-width:720px) { .lead { grid-template-columns:1fr; } .search { min-width:0; width:100%; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="/images/logo.png" alt="" onerror="this.remove()">
+    <h1>Estimate requests<small>Mainely Insulation and Weatherization</small></h1>
+  </div>
+  <div class="actions">
+    <a href="/admin/api/leads.csv">Download CSV</a>
+    <form method="post" action="/admin/logout"><button class="ghost" type="submit">Sign out</button></form>
+  </div>
+</header>
+<main>
+  <div class="alert" id="alert" role="status"><span id="alert-text"></span><button type="button" id="show-overdue">Show them</button></div>
+
+  <section class="stats" aria-label="Lead totals">
+    <div class="stat"><b id="s-7">–</b><span>Leads, last 7 days</span></div>
+    <div class="stat"><b id="s-30">–</b><span>Leads, last 30 days</span></div>
+    <div class="stat"><b id="s-new">–</b><span>Waiting for a call back</span></div>
+    <div class="stat"><b id="s-won">–</b><span>Jobs won</span></div>
+    <div class="stat"><b id="s-rate">–</b><span>Win rate (won ÷ closed)</span></div>
+  </section>
+  <section class="breakdown">
+    <div class="card"><h2>Where leads found you</h2><ul class="bars" id="b-src"></ul></div>
+    <div class="card"><h2>What they asked about</h2><ul class="bars" id="b-svc"></ul></div>
+  </section>
+
+  <div class="toolbar">
+    <div class="tabs" id="tabs" role="toolbar" aria-label="Filter by status"></div>
+    <input class="search" id="search" type="search" placeholder="Search name, town, phone…" aria-label="Search leads">
+  </div>
+  <div id="list" aria-live="polite"></div>
+</main>
+<script>
+  const state = { filter: 'all', statuses: [], counts: {}, leads: [], q: '', overdueOnly: false };
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const parseDate = (iso) => new Date(String(iso).replace(' ', 'T') + 'Z');
+  const isOverdue = (l) => l.status === 'new' && (Date.now() - parseDate(l.created_at)) > 24 * 3600 * 1000;
+
+  async function api(url, opts = {}) {
+    const res = await fetch(url, { headers: { 'Content-Type': 'application/json' }, ...opts });
+    if (res.status === 401) { location.href = '/admin/login'; throw new Error('signed out'); }
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Something went wrong. Refresh and try again.');
+    return data;
+  }
+
+  function ago(iso) {
+    const mins = Math.round((Date.now() - parseDate(iso)) / 60000);
+    if (mins < 60) return `${Math.max(mins, 1)} min ago`;
+    const hrs = Math.round(mins / 60);
+    if (hrs < 48) return `${hrs} hr ago`;
+    return parseDate(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function bars(el, rows) {
+    if (!rows.length) { el.innerHTML = '<li class="none">Shows up once leads come in.</li>'; return; }
+    const max = Math.max(...rows.map((r) => r.n));
+    el.innerHTML = rows.map((r) => `<li><span>${esc(r.label)}</span><span class="n">${r.n}</span><span class="bar"><i style="width:${Math.round((r.n / max) * 100)}%"></i></span></li>`).join('');
+  }
+
+  async function loadStats() {
+    try {
+      const s = await api('/admin/api/stats');
+      $('#s-7').textContent = s.last7; $('#s-30').textContent = s.last30;
+      $('#s-new').textContent = s.newCount; $('#s-won').textContent = s.won;
+      $('#s-rate').textContent = s.winRate == null ? '–' : `${s.winRate}%`;
+      bars($('#b-src'), s.topSources); bars($('#b-svc'), s.topServices);
+      const a = $('#alert');
+      if (s.needsFollowUp) {
+        $('#alert-text').textContent = `${s.needsFollowUp} lead${s.needsFollowUp > 1 ? 's have' : ' has'} been waiting more than a day without a call back.`;
+        a.classList.add('show');
+      } else a.classList.remove('show');
+    } catch (_) { /* list view still works */ }
+  }
+
+  function renderTabs() {
+    const total = Object.values(state.counts).reduce((a, b) => a + b, 0);
+    const items = [['all', total], ...state.statuses.map((s) => [s, state.counts[s] || 0])];
+    $('#tabs').innerHTML = items.map(([s, n]) =>
+      `<button type="button" data-s="${esc(s)}" aria-pressed="${state.filter === s && !state.overdueOnly}">${esc(s)}<span class="n">${n}</span></button>`).join('');
+  }
+
+  function renderLeads() {
+    const q = state.q.toLowerCase();
+    let leads = state.leads;
+    if (state.overdueOnly) leads = leads.filter(isOverdue);
+    if (q) leads = leads.filter((l) => [l.name, l.town, l.phone, l.email, l.services, l.message].join(' ').toLowerCase().includes(q));
+    if (!leads.length) {
+      $('#list').innerHTML = `<div class="empty">${state.q ? 'No leads match that search.'
+        : state.filter === 'all' ? 'No estimate requests yet. New ones from the website show up here and in the alert inbox.'
+        : `No leads marked “${esc(state.filter)}”.`}</div>`;
+      return;
+    }
+    $('#list').innerHTML = leads.map((l) => {
+      const tel = (l.phone || '').replace(/[^\d+]/g, '');
+      const first = esc((l.name || '').split(' ')[0]);
+      const overdue = isOverdue(l);
+      const smsBody = encodeURIComponent(`Hi ${(l.name || '').split(' ')[0]}, this is Scott with Mainely Insulation and Weatherization. Thanks for your estimate request! When's a good time to take a look at the house?`);
+      return `
+      <article class="lead ${l.status === 'new' ? 'new' : ''} ${overdue ? 'overdue' : ''}" data-id="${l.id}">
+        <div>
+          <h3>${esc(l.name)}
+            ${overdue ? '<span class="tag warn">Over a day, no call back</span>' : ''}
+            ${l.rebate ? '<span class="tag">Rebates</span>' : ''}
+            ${l.discount ? `<span class="tag">${esc(l.discount)} 5%</span>` : ''}
+          </h3>
+          <div class="meta">${ago(l.created_at)}${l.town ? ' · ' + esc(l.town) : ''} · via ${esc(l.source)}${l.source_form === 'quick' ? ' (quick form)' : ''}</div>
+          <div class="quick">
+            ${tel ? `<a class="primary" href="tel:${esc(tel)}">Call ${first}</a><a href="sms:${esc(tel)}?&body=${smsBody}">Text</a>` : ''}
+            ${l.email ? `<a href="mailto:${esc(l.email)}?subject=${encodeURIComponent('Your insulation estimate')}">Email</a>` : ''}
+            ${l.town ? `<a href="https://www.google.com/maps/search/${encodeURIComponent(l.town + ', Maine')}" target="_blank" rel="noopener">Map</a>` : ''}
+          </div>
+          <dl>
+            ${l.phone ? `<dt>Phone</dt><dd>${esc(l.phone)}</dd>` : ''}
+            ${l.email ? `<dt>Email</dt><dd>${esc(l.email)}</dd>` : ''}
+            ${l.services ? `<dt>Services</dt><dd>${esc(l.services)}</dd>` : ''}
+            ${l.property_type ? `<dt>Property</dt><dd>${esc(l.property_type)}</dd>` : ''}
+            ${l.timeline ? `<dt>Timeline</dt><dd>${esc(l.timeline)}</dd>` : ''}
+            ${l.rebate ? `<dt>Rebates</dt><dd>Wants Efficiency Maine rebates</dd>` : ''}
+            ${l.discount ? `<dt>Discount</dt><dd>${esc(l.discount)} (5%)</dd>` : ''}
+            ${l.message ? `<dt>Message</dt><dd>${esc(l.message)}</dd>` : ''}
+          </dl>
+        </div>
+        <div class="side">
+          <label for="st-${l.id}">Status</label>
+          <select id="st-${l.id}" class="status">${state.statuses.map((s) => `<option ${s === l.status ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select>
+          <textarea class="notes" aria-label="Notes for ${esc(l.name)}" placeholder="Notes: visit date, quote amount, rebate paperwork…">${esc(l.notes)}</textarea>
+          <div class="row"><button type="button" class="save">Save notes</button><button type="button" class="del">Delete</button></div>
+          <div class="saved" role="status"></div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  async function load() {
+    try {
+      const qs = state.filter === 'all' ? '' : `?status=${encodeURIComponent(state.filter)}`;
+      const data = await api('/admin/api/leads' + qs);
+      Object.assign(state, { statuses: data.statuses, counts: data.counts, leads: data.leads });
+      renderTabs(); renderLeads();
+    } catch (e) { $('#list').innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    loadStats();
+  }
+
+  $('#tabs').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-s]'); if (!b) return;
+    state.filter = b.dataset.s; state.overdueOnly = false; load();
+  });
+  $('#show-overdue').addEventListener('click', () => {
+    state.filter = 'all'; state.overdueOnly = true; load();
+  });
+  $('#search').addEventListener('input', (e) => { state.q = e.target.value.trim(); renderLeads(); });
+
+  $('#list').addEventListener('change', async (e) => {
+    if (!e.target.matches('.status')) return;
+    const card = e.target.closest('.lead'); const msg = card.querySelector('.saved');
+    try { await api(`/admin/api/leads/${card.dataset.id}`, { method: 'PATCH', body: JSON.stringify({ status: e.target.value }) });
+      msg.textContent = `Marked ${e.target.value}`; setTimeout(load, 700);
+    } catch (err) { msg.textContent = err.message; msg.classList.add('err'); }
+  });
+
+  $('#list').addEventListener('click', async (e) => {
+    const card = e.target.closest('.lead'); if (!card) return;
+    const msg = card.querySelector('.saved');
+    if (e.target.matches('.save')) {
+      try { await api(`/admin/api/leads/${card.dataset.id}`, { method: 'PATCH', body: JSON.stringify({ notes: card.querySelector('.notes').value }) });
+        msg.textContent = 'Notes saved';
+      } catch (err) { msg.textContent = err.message; }
+    }
+    if (e.target.matches('.del')) {
+      if (!confirm('Delete this lead? This can’t be undone.')) return;
+      try { await api(`/admin/api/leads/${card.dataset.id}`, { method: 'DELETE', body: '{}' }); load(); }
+      catch (err) { msg.textContent = err.message; }
+    }
+  });
+
+  load();
+  setInterval(load, 5 * 60 * 1000); // refresh every 5 minutes if left open
+</script>
+</body>
+</html>
