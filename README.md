@@ -28,7 +28,7 @@ The vapor barrier gallery currently reuses two fiberglass shots that show poly s
 1. New Web Service from this repo. Build: `npm install`. Start: `npm start`. Node is pinned to 20.x (`.node-version` + `engines`) because better-sqlite3 has no prebuilt binary for newer Node.
 2. Add a persistent disk mounted at `/var/data` and set `DB_PATH=/var/data/mainely.sqlite` (otherwise leads are wiped on each redeploy).
 3. Environment variables (see `.env.example`):
-   - `ADMIN_USERNAME`, `ADMIN_PASSWORD` (8+ chars — login is disabled without it), `SESSION_SECRET` (16+ random chars)
+   - `ADMIN_PASSWORD` (password-only login, 8+ chars — login is disabled without it), `SESSION_SECRET` (16+ random chars)
    - `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SMTP_USER`, `SMTP_PASS` (Gmail app password)
    - `NOTIFY_EMAIL` — the inbox that gets new estimate requests
    - `SITE_URL=https://mainelyinsulation.com` — for the "View in dashboard" link

@@ -27,13 +27,13 @@
   <p class="sub">Mainely Insulation and Weatherization estimate requests</p>
   <p class="msg" id="msg" role="alert"></p>
   <label for="p">Password</label>
-  <input id="p" name="password" type="password" autocomplete="current-password" required>
+  <input id="p" name="password" type="password" autofocus autocomplete="current-password" required>
   <button type="submit">Sign in</button>
 </form>
 <script>
   const e = new URLSearchParams(location.search).get('e');
   const text = {
-    bad: 'That username and password don’t match. Try again.',
+    bad: 'That password didn’t work. Try again.',
     wait: 'Too many sign-in attempts. Wait 15 minutes, then try again.',
     setup: 'Sign-in is turned off until ADMIN_PASSWORD (8+ characters) is set on the server.'
   }[e];
