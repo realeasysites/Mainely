@@ -408,7 +408,7 @@ fieldset.field { border: 0; margin: 16px 0 0; padding: 0; min-width: 0; }
 .topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 18px; padding-top: 8px; padding-bottom: 8px; }
 .topbar p { margin: 0; }
 .topbar-links { display: flex; align-items: center; gap: 10px; }
-.topbar a { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none; border-radius: 999px; padding: 6px 14px; }
+.topbar a { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .95rem; text-decoration: none; border-radius: 999px; padding: 6px 16px; }
 .topbar a svg { width: 16px; height: 16px; flex: none; }
 .topbar-review { background: var(--brand); color: var(--on-brand); }
 .topbar-review:hover { background: var(--brand-press); }
