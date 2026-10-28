@@ -181,7 +181,7 @@
             ${l.rebate ? '<span class="tag">Rebates</span>' : ''}
             ${l.discount ? `<span class="tag">${esc(l.discount)} 5%</span>` : ''}
           </h3>
-          <div class="meta">${ago(l.created_at)}${l.town ? ' · ' + esc(l.town) : ''} · via ${esc(l.source)}${l.source_form === 'quick' ? ' (quick form)' : ''}</div>
+          <div class="meta">${ago(l.created_at)}${l.town ? ' · ' + esc(l.town) : ''} · via ${esc(l.source)}${l.source_form === 'quick' ? ' (quick form)' : l.source_form === 'assistant' ? ' (assistant)' : ''}</div>
           <div class="quick">
             ${tel ? `<a class="primary" href="tel:${esc(tel)}">Call ${first}</a><a href="sms:${esc(tel)}?&body=${smsBody}">Text</a>` : ''}
             ${l.email ? `<a href="mailto:${esc(l.email)}?subject=${encodeURIComponent('Your insulation estimate')}">Email</a>` : ''}

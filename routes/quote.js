@@ -1,5 +1,5 @@
 // Public estimate-request endpoint: POST /api/quote
-// Used by both the quick hero form (form=quick) and the full estimate form (form=full).
+// Used by the quick hero form (form=quick), the guided assistant (form=assistant) and the full form (form=full).
 const express = require('express');
 const { sendLeadAlert, sendCustomerConfirmation } = require('../lib/mailer');
 const { rateLimit } = require('../lib/rate-limit');
@@ -40,7 +40,7 @@ router.post('/quote', async (req, res) => {
     discount: pick(body.discount, DISCOUNT),
     rebate: body.rebate === 'yes' || body.rebate === true ? 'Yes' : '',
     message: String(body.message ?? '').trim().slice(0, 2000),
-    source_form: body.form === 'quick' ? 'quick' : 'full',
+    source_form: ['quick', 'assistant'].includes(body.form) ? body.form : 'full',
     source_page: clean(body.page, 200),
     referrer: clean(body.referrer, 300),
     utm_source: clean(body.utm_source, 80),

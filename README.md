@@ -23,6 +23,15 @@ Real client job photos live in `public/images/<service>/` (resized to 1024px JPG
 To add more job photos, drop them in the right folder and add the name in `public/js/gallery-data.js`.
 The vapor barrier gallery currently reuses two fiberglass shots that show poly sheeting; swap in dedicated vapor barrier photos when available.
 
+## Guided assistant (bottom-right corner)
+
+`public/js/assistant.js` — a scripted helper, not an AI service (no API key, no monthly cost, never makes up prices or rebate rules).
+- Answers common questions: Efficiency Maine rebates, veteran/first responder discount, services, cost, service area, hours, ice dams/mold/drafts. Anything else gets an honest "ask Scott" with his number.
+- Walks visitors one step at a time into a request: service → building type → rebates (existing homes) → timeline → veteran/first responder → town → name → phone → email (optional) → note (optional) → review → send.
+- Sends to `/api/quote` with `form=assistant`, so it lands in the dashboard and alert email marked "Guided assistant", with the same lead-source tracking.
+- Remembers progress for the visit if someone switches pages. One gentle nudge bubble after 15 seconds per visit.
+- Edit answers in the `FAQ` block at the top of the file. Any link to `#assistant` opens it.
+
 ## Hero video, reviews, Facebook
 
 - Hero background video: `public/video/hero.mp4` (desktop, 1280×720) and `hero-small.mp4` (phones), muted, 8s loop, ~1.2MB / 0.6MB.
