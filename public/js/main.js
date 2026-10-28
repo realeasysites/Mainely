@@ -35,6 +35,41 @@
       `<a href="${url}" target="_blank" rel="noopener" aria-label="Mainely Insulation and Weatherization on ${NAMES[k]}" title="${NAMES[k]}">${ICONS[k] || ''}</a>`).join('');
   });
   $$('[data-google-link]').forEach((a) => { if (SITE.socials && SITE.socials.google) a.href = SITE.socials.google; });
+  $$('[data-review-link]').forEach((a) => { if (SITE.reviewLink) a.href = SITE.reviewLink; });
+
+  /* Hero background video: respects reduced motion + data saver, pauses when off screen, has a pause button */
+  const video = $('.hero-video');
+  const toggle = $('.video-toggle');
+  if (video) {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    let userPaused = false;
+    const setBtn = () => {
+      if (!toggle) return;
+      const paused = video.paused;
+      toggle.textContent = paused ? 'Play video' : 'Pause video';
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+    };
+    if (reduce || saveData) {
+      userPaused = true;
+      video.removeAttribute('autoplay');
+      video.pause();
+      if (saveData) { video.querySelectorAll('source').forEach((s) => s.remove()); video.load(); if (toggle) toggle.hidden = true; }
+    }
+    video.addEventListener('play', setBtn);
+    video.addEventListener('pause', setBtn);
+    if (toggle) toggle.addEventListener('click', () => {
+      if (video.paused) { userPaused = false; video.play().catch(() => {}); } else { userPaused = true; video.pause(); }
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        if (userPaused) return;
+        if (entry.isIntersecting) video.play().catch(() => {}); else video.pause();
+      }, { threshold: 0.1 }).observe(video);
+    }
+    setBtn();
+  }
 
   /* Thermal before/after */
   const thermal = $('.thermal');

@@ -23,6 +23,15 @@ Real client job photos live in `public/images/<service>/` (resized to 1024px JPG
 To add more job photos, drop them in the right folder and add the name in `public/js/gallery-data.js`.
 The vapor barrier gallery currently reuses two fiberglass shots that show poly sheeting; swap in dedicated vapor barrier photos when available.
 
+## Hero video, reviews, Facebook
+
+- Hero background video: `public/video/hero.mp4` (desktop, 1280×720) and `hero-small.mp4` (phones), muted, 8s loop, ~1.2MB / 0.6MB.
+  Poster frame `public/images/hero/poster.jpg` shows while it loads and for visitors with reduced-motion or data-saver on. A pause button sits in the hero's bottom-right corner.
+- "Leave us a review" buttons (top bar, About section, footer) open Google's review box for the listing at 28 Old Alfred Rd with existing reviews
+  (place ID `ChIJ67-15VqlskwRvznKJnOoOMc`). Change it in one place: `reviewLink` in `public/js/site-config.js`.
+- Note: Google has a second listing for the business ("Mainely Insulation And Weatherization", the one the old site's map used). The client should merge or remove the duplicate in Google Business Profile so all reviews land in one place.
+- Facebook: https://www.facebook.com/mainelyinsulation (top bar, header, contact, footer, customer auto-reply email).
+
 ## Deploy on Render
 
 1. New Web Service from this repo. Build: `npm install`. Start: `npm start`. Node is pinned to 20.x (`.node-version` + `engines`) because better-sqlite3 has no prebuilt binary for newer Node.

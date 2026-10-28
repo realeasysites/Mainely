@@ -38,6 +38,7 @@
     { "@type": "Person", "name": "Trey Gagne", "jobTitle": "Owner" },
     { "@type": "Person", "name": "Scott Regan", "jobTitle": "Company manager", "telephone": "+1-207-303-7205" }
   ],
+  "sameAs": ["https://www.facebook.com/mainelyinsulation", "https://www.google.com/maps?cid=14355409024768948671"],
   "areaServed": [{ "@type": "AdministrativeArea", "name": "York County, Maine" }, { "@type": "AdministrativeArea", "name": "Cumberland County, Maine" }],
   "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Insulation & weatherization services", "itemListElement": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spray foam insulation" } },
@@ -53,6 +54,16 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="topbar">
+  <div class="wrap">
+    <p>Had us out to your house? A quick review helps other Maine homeowners find us.</p>
+    <div class="topbar-links">
+      <a class="topbar-review" href="https://search.google.com/local/writereview?placeid=ChIJ67-15VqlskwRvznKJnOoOMc" target="_blank" rel="noopener" data-review-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>Leave us a Google review</a>
+      <a class="topbar-fb" href="https://www.facebook.com/mainelyinsulation" target="_blank" rel="noopener" aria-label="Mainely Insulation and Weatherization on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8z"/></svg><span>Facebook</span></a>
+    </div>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/" aria-label="Mainely Insulation and Weatherization home">
@@ -61,7 +72,7 @@
     </a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="/services">Services</a>
-      <a href="#how">How we work</a>
+      <a href="#rebates">Rebates</a>
       <a href="#about">About</a>
       <a href="#estimate">Contact</a>
     </nav>
@@ -74,10 +85,16 @@
 
 <main id="main">
 
-  <!-- HERO: thermal before/after -->
+  <!-- HERO: spray foam video background + quick estimate form -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap">
-      <div>
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/images/hero/poster.jpg">
+        <source src="/video/hero-small.mp4" type="video/mp4" media="(max-width: 700px)">
+        <source src="/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
         <h1 id="hero-title">Keep the heat you pay for.</h1>
         <p class="lede">Spray foam, dense-pack cellulose, fiberglass, air sealing and ventilation for homes across Southern Maine. Based in Biddeford, serving York and Cumberland counties.</p>
         <div class="hero-actions">
@@ -85,7 +102,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
             Call (207) 303-7205
           </a>
-          <a class="btn btn-line" href="#quick">Request an estimate</a>
+          <a class="btn btn-line" href="/services">See our work</a>
         </div>
         <ul class="hero-facts">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Veteran-owned and operated</li>
@@ -94,77 +111,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg>5% off for veterans &amp; first responders</li>
         </ul>
       </div>
-
-      <figure class="thermal" data-state="before" style="margin:0">
-        <div class="thermal-top">
-          <p class="thermal-title" id="thermal-title">Your house through a thermal camera</p>
-          <div class="seg" role="group" aria-label="Compare before and after insulation">
-            <button type="button" data-state="before" aria-pressed="true">Before</button>
-            <button type="button" data-state="after" aria-pressed="false">After</button>
-          </div>
-        </div>
-
-        <svg class="house" viewBox="0 0 520 400" role="img" aria-labelledby="thermal-title thermal-status">
-          <defs>
-            <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
-            <pattern id="siding" width="10" height="14" patternUnits="userSpaceOnUse"><path d="M0 13.5h10" stroke="rgba(0,0,0,.16)" stroke-width="1"/></pattern>
-          </defs>
-          <g transform="translate(20,0)">
-            <line x1="-20" y1="372" x2="500" y2="372" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
-            <rect class="z z-chim" x="318" y="72" width="30" height="80"/>
-            <polygon class="z z-roof" points="46,178 240,52 434,178"/>
-            <rect class="z z-wall" x="70" y="170" width="340" height="136"/>
-            <rect x="70" y="170" width="340" height="136" fill="url(#siding)"/>
-            <rect class="z z-rim" x="66" y="306" width="348" height="12"/>
-            <rect class="z z-found" x="70" y="318" width="340" height="54"/>
-            <rect class="z z-win" x="226" y="116" width="28" height="22"/>
-            <rect class="z z-win" x="106" y="200" width="58" height="72"/>
-            <rect class="z z-win" x="316" y="200" width="58" height="72"/>
-            <rect class="z z-door" x="210" y="222" width="60" height="84"/>
-            <rect class="z z-win" x="112" y="334" width="44" height="16"/>
-            <rect class="z z-win" x="324" y="334" width="44" height="16"/>
-            <g stroke="rgba(0,0,0,.35)" stroke-width="2" fill="none">
-              <path d="M135 200v72M106 236h58M345 200v72M316 236h58M240 116v22"/>
-            </g>
-            <g class="glow" filter="url(#blur)">
-              <ellipse cx="240" cy="112" rx="96" ry="34" fill="#ffe25a"/>
-              <ellipse cx="240" cy="176" rx="170" ry="9" fill="#f7901e"/>
-              <ellipse cx="240" cy="312" rx="176" ry="9" fill="#ffe25a"/>
-              <ellipse cx="135" cy="236" rx="34" ry="40" fill="#ffe25a"/>
-              <ellipse cx="345" cy="236" rx="34" ry="40" fill="#ffe25a"/>
-              <ellipse cx="333" cy="78" rx="18" ry="22" fill="#ffe25a"/>
-            </g>
-            <!-- call-outs -->
-            <g>
-              <circle class="pin" cx="200" cy="100" r="7"/>
-              <line x1="193" y1="96" x2="122" y2="62" stroke="#fff" stroke-width="1.5"/>
-              <text class="lbl" x="116" y="62" text-anchor="end">Attic</text>
-              <circle class="pin" cx="392" cy="250" r="7"/>
-              <line x1="399" y1="250" x2="434" y2="250" stroke="#fff" stroke-width="1.5"/>
-              <text class="lbl" x="440" y="255">Walls</text>
-              <circle class="pin" cx="96" cy="312" r="7"/>
-              <line x1="96" y1="319" x2="96" y2="378" stroke="#fff" stroke-width="1.5"/>
-              <text class="lbl" x="104" y="393">Rim joist</text>
-            </g>
-          </g>
-        </svg>
-
-        <div class="scale" aria-hidden="true"><span>Colder</span><span class="scale-bar"></span><span>Warmer</span></div>
-
-        <dl class="readout">
-          <div><dt>Attic</dt><dd><span class="before-txt">Warm air rising straight out through the roof.</span><span class="after-txt">Air-sealed and insulated, with ventilation to keep it dry.</span></dd></div>
-          <div><dt>Walls</dt><dd><span class="before-txt">Empty or settled cavities letting heat through.</span><span class="after-txt">Dense-packed so the heat stays in the rooms.</span></dd></div>
-          <div><dt>Rim joist</dt><dd><span class="before-txt">Drafts where the house meets the foundation.</span><span class="after-txt">Sealed tight with spray foam.</span></dd></div>
-        </dl>
-        <figcaption class="thermal-note">Illustration of what a thermal camera picks up from outside on a winter night. Bright spots are heat leaving the house. <span id="thermal-status" class="sr-status" aria-live="polite">Showing the house before insulation: heat escaping.</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- QUICK ESTIMATE: the fastest way to become a lead -->
-  <section class="quick-band" id="quick" aria-labelledby="quick-title">
-    <div class="wrap">
-      <form class="quick-form" id="quick-form" action="/api/quote" method="post" novalidate data-form="quick">
+      <form aria-labelledby="quick-title" class="quick-form" id="quick" action="/api/quote" method="post" novalidate data-form="quick">
         <div class="quick-head">
           <h2 id="quick-title">Get your estimate started</h2>
           <p>Four quick answers and Scott will call you back.</p>
@@ -202,10 +149,11 @@
         <p class="form-status" role="alert"></p>
       </form>
     </div>
+    <button class="video-toggle" type="button" aria-pressed="false" aria-label="Pause background video">Pause video</button>
   </section>
 
   <!-- BUILDING SCIENCE -->
-  <section class="band band-frost science" aria-labelledby="science-title">
+  <section class="band band-white science" aria-labelledby="science-title">
     <div class="wrap">
       <blockquote>
         <h2 id="science-title">Insulation without ventilation leads to condensation.</h2>
@@ -300,18 +248,70 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section class="band band-frost" id="how" aria-labelledby="how-title">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="how-title">How a job works</h2>
+  <!-- WHERE HEAT GOES: thermal before/after (replaces the old numbered steps) -->
+  <section class="band band-white heat thermal" id="heat-loss" data-state="before" aria-labelledby="heat-title">
+    <div class="wrap heat-grid">
+      <div class="heat-copy">
+        <h2 id="heat-title">See where your house loses heat</h2>
+        <p class="lede">Most Maine homes leak heat in the same three places. Flip between before and after to see what changes once we've been through.</p>
+        <dl class="readout">
+          <div><dt>Attic</dt><dd><span class="before-txt">Warm air rising straight out through the roof.</span><span class="after-txt">Air-sealed and insulated, with ventilation to keep it dry.</span></dd></div>
+          <div><dt>Walls</dt><dd><span class="before-txt">Empty or settled cavities letting heat through.</span><span class="after-txt">Dense-packed so the heat stays in the rooms.</span></dd></div>
+          <div><dt>Rim joist</dt><dd><span class="before-txt">Drafts where the house meets the foundation.</span><span class="after-txt">Sealed tight with spray foam.</span></dd></div>
+        </dl>
+        <p class="thermal-note">Illustration of what a thermal camera picks up from outside on a winter night. Hot colors are heat leaving the house. <span id="thermal-status" class="sr-status" aria-live="polite">Showing the house before insulation: heat escaping.</span></p>
+        <p class="heat-actions"><a class="btn btn-brand" href="#quick">Get an estimate</a> <a class="ext" href="/services">See the services</a></p>
       </div>
-      <ol class="steps">
-        <li><h3>Reach out</h3><p>Call, email, or send the form below with a little about your house.</p></li>
-        <li><h3>We look at the house</h3><p>Attic, walls, basement and ventilation, to see where heat and moisture are going.</p></li>
-        <li><h3>Get your estimate</h3><p>A clear price for the work that will make the biggest difference.</p></li>
-        <li><h3>We do the work</h3><p>Our team installs it, cleans up, and walks you through what changed.</p></li>
-      </ol>
+      <figure class="cam">
+        <div class="thermal-top">
+          <p class="thermal-title" id="thermal-title">Through a thermal camera</p>
+          <div class="seg" role="group" aria-label="Compare before and after insulation">
+            <button type="button" data-state="before" aria-pressed="true">Before</button>
+            <button type="button" data-state="after" aria-pressed="false">After</button>
+          </div>
+        </div>
+
+        <svg class="house" viewBox="0 0 520 400" role="img" aria-labelledby="thermal-title thermal-status">
+          <defs>
+            <pattern id="siding" width="10" height="14" patternUnits="userSpaceOnUse"><path d="M0 13.5h10" stroke="rgba(0,0,0,.16)" stroke-width="1"/></pattern>
+          </defs>
+          <g transform="translate(20,0)">
+            <line x1="-20" y1="372" x2="500" y2="372" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+            <rect class="z z-chim" x="318" y="72" width="30" height="80"/>
+            <polygon class="z z-roof" points="46,178 240,52 434,178"/>
+            <rect class="z z-wall" x="70" y="170" width="340" height="136"/>
+            <rect x="70" y="170" width="340" height="136" fill="url(#siding)"/>
+            <rect class="z z-rim" x="66" y="306" width="348" height="12"/>
+            <rect class="z z-found" x="70" y="318" width="340" height="54"/>
+            <rect class="z z-win" x="226" y="116" width="28" height="22"/>
+            <rect class="z z-win" x="106" y="200" width="58" height="72"/>
+            <rect class="z z-win" x="316" y="200" width="58" height="72"/>
+            <rect class="z z-door" x="210" y="222" width="60" height="84"/>
+            <rect class="z z-win" x="112" y="334" width="44" height="16"/>
+            <rect class="z z-win" x="324" y="334" width="44" height="16"/>
+            <g stroke="rgba(0,0,0,.35)" stroke-width="2" fill="none">
+              <path d="M135 200v72M106 236h58M345 200v72M316 236h58M240 116v22"/>
+            </g>
+            <!-- call-outs -->
+            <g>
+              <circle class="pin" cx="200" cy="100" r="7"/>
+              <line x1="193" y1="96" x2="122" y2="62" stroke="#fff" stroke-width="1.5"/>
+              <text class="lbl" x="116" y="62" text-anchor="end">Attic</text>
+              <circle class="pin" cx="392" cy="250" r="7"/>
+              <line x1="399" y1="250" x2="434" y2="250" stroke="#fff" stroke-width="1.5"/>
+              <text class="lbl" x="440" y="255">Walls</text>
+              <circle class="pin" cx="96" cy="312" r="7"/>
+              <line x1="96" y1="319" x2="96" y2="378" stroke="#fff" stroke-width="1.5"/>
+              <text class="lbl" x="104" y="393">Rim joist</text>
+            </g>
+          </g>
+        </svg>
+
+        <div class="scale" aria-hidden="true"><span>Colder</span><span class="swatches"><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Warmer</span></div>
+
+
+
+      </figure>
     </div>
   </section>
 
@@ -337,19 +337,22 @@
         </div>
         <div class="reviews">
           <div>
-            <h3>Read our Google reviews</h3>
-            <p>See what Southern Maine homeowners say, or leave a review after your job.</p>
+            <h3>Worked with us? Leave a review.</h3>
+            <p>It takes about a minute, and it's the best way to help other Southern Maine homeowners find a crew they can trust.</p>
           </div>
-          <a class="btn btn-spruce" data-google-link href="https://www.google.com/maps?cid=16341121007655099263" target="_blank" rel="noopener">Open Google reviews</a>
+          <div class="review-actions">
+            <a class="btn btn-brand" href="https://search.google.com/local/writereview?placeid=ChIJ67-15VqlskwRvznKJnOoOMc" target="_blank" rel="noopener" data-review-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>Leave a Google review</a>
+            <a class="btn btn-line-dark" href="https://www.facebook.com/mainelyinsulation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8z"/></svg>Follow us on Facebook</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT + ESTIMATE FORM -->
-  <section class="band band-spruce contact" id="estimate" aria-labelledby="estimate-title">
+  <section class="band band-white contact" id="estimate" aria-labelledby="estimate-title">
     <div class="wrap">
-      <div class="on-dark">
+      <div>
         <h2 id="estimate-title">Request an estimate</h2>
         <p class="lede" style="margin-top:14px">Tell us a little about the house and we'll follow up to set up a time. Rather talk it through? Call us.</p>
         <ul class="contact-list">
@@ -361,7 +364,7 @@
         </ul>
         <div class="socials" data-socials></div>
         <div class="map">
-          <iframe title="Map to Mainely Insulation and Weatherization in Biddeford, Maine" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906056.256099379!2d-74.43287292017565!3d44.15264019524984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4893524d2463999d%3A0xe2c752fa3cf49b7f!2sMainely%20Insulation%20And%20Weatherization!5e0!3m2!1sen!2sus!4v1741044519743!5m2!1sen!2sus"></iframe>
+          <iframe title="Map to Mainely Insulation and Weatherization in Biddeford, Maine" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Mainely%20Insulation%2C%2028%20Old%20Alfred%20Rd%2C%20Biddeford%2C%20ME%2004005&amp;z=11&amp;output=embed"></iframe>
         </div>
       </div>
 
@@ -468,7 +471,10 @@
     <div class="foot-brand">
       <a class="chip" href="/" aria-label="Mainely Insulation and Weatherization home"><img src="/images/logo.png" alt="Mainely Insulation and Weatherization" loading="lazy" onerror="this.parentNode.classList.add('no-logo');this.replaceWith('Mainely Insulation and Weatherization')"></a>
       <p>“Whatever it takes.” Insulation and weatherization for Southern Maine homes. Veteran-owned and operated. Efficiency Maine Registered Vendor. 5% off for veterans and first responders.</p>
-      <div class="socials" data-socials></div>
+      <div class="foot-actions">
+        <a class="btn btn-brand" href="https://search.google.com/local/writereview?placeid=ChIJ67-15VqlskwRvznKJnOoOMc" target="_blank" rel="noopener" data-review-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>Leave us a review</a>
+        <a class="btn btn-line" href="https://www.facebook.com/mainelyinsulation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8z"/></svg>Facebook</a>
+      </div>
     </div>
     <div>
       <h3>Services</h3>
@@ -493,7 +499,7 @@
     </div>
     <div class="legal">
       <span>© <span data-year>2026</span> Mainely Insulation and Weatherization</span>
-      <span>Website by Real Easy Sites</span>
+      <a class="credit" href="https://getrealeasysites.com" target="_blank" rel="noopener">Website by Real Easy Sites</a>
     </div>
   </div>
 </footer>

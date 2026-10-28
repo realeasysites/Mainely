@@ -3,8 +3,10 @@ window.SITE = {
   phone: '(207) 303-7205',
   phoneHref: 'tel:+12073037205',
   socials: {
-    facebook: '',   // e.g. 'https://www.facebook.com/yourpage'
+    facebook: 'https://www.facebook.com/mainelyinsulation',
     instagram: '',  // e.g. 'https://www.instagram.com/yourhandle'
-    google: 'https://www.google.com/maps?cid=16341121007655099263', // Google Business Profile (reviews)
+    google: 'https://search.google.com/local/reviews?placeid=ChIJ67-15VqlskwRvznKJnOoOMc', // Google reviews (listing with reviews)
   },
+  // Opens Google's "write a review" box for their listing
+  reviewLink: 'https://search.google.com/local/writereview?placeid=ChIJ67-15VqlskwRvznKJnOoOMc',
 };
