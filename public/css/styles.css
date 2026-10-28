@@ -539,3 +539,18 @@ main .lede { color: var(--dk-muted); }
 .callbar { background: #0e1c0e; border-top-color: var(--dk-line); box-shadow: none; }
 .callbar .btn-spruce { background: var(--white); color: var(--spruce); }
 main .hero .lede, main .page-hero .lede { color: var(--on-dark); }
+
+/* both phone numbers in the header, labeled */
+.header-phones { display: grid; gap: 2px; }
+.header-phones a { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-weight: 700; text-decoration: none; color: var(--spruce); white-space: nowrap; font-size: .95rem; }
+.header-phones a span { font-weight: 600; font-size: .78rem; color: var(--muted); }
+.header-phones a:hover { color: var(--brand-deep); }
+.nav-call { display: none; }
+.hero-alt { margin: 14px 0 0; color: var(--on-dark); font-size: .98rem; }
+.hero-alt a { color: var(--white); font-weight: 700; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.save-calls { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; }
+@media (max-width: 1100px) { .header-phones { display: none; } }
+@media (max-width: 820px) {
+  .nav .nav-call { display: block; font-weight: 700; color: var(--brand-deep); }
+  .hero-alt { margin-top: 4px; }
+}

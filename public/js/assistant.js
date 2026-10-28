@@ -150,7 +150,7 @@
     const hit = Object.entries(FAQ).find(([, f]) => f.keys.test(text));
     if (/^(hi|hello|hey|yo)\b/i.test(text)) { bot('Hi! Want to start an estimate, or ask a question?'); return menu(false); }
     if (/human|person|someone|call|talk|phone|speak/i.test(text)) {
-      bot(`You can reach Scott directly at <a href="${TEL}">${esc(PHONE)}</a> (Mon–Fri, 7am–5pm). Or I can take your info and have him call you.`);
+      bot(`Call Scott, the company manager, at <a href="${TEL}">${esc(PHONE)}</a>, or Trey, the owner, at <a href="${SITE.ownerPhoneHref || 'tel:+12074233332'}">${esc(SITE.ownerPhone || '(207) 423-3332')}</a> (Mon–Fri, 7am–5pm). Or I can take your info and have Scott call you.`);
       return buttons([['Have Scott call me', () => { me('Have Scott call me'); startFlow(); }, 'mia-primary'], ['Back to questions', () => { me('Back'); menu(false); }]]);
     }
     if (hit) return answer(hit[0]);

@@ -2,6 +2,9 @@
 window.SITE = {
   phone: '(207) 303-7205',
   phoneHref: 'tel:+12073037205',
+  // Trey Gagne, owner
+  ownerPhone: '(207) 423-3332',
+  ownerPhoneHref: 'tel:+12074233332',
   socials: {
     facebook: 'https://www.facebook.com/mainelyinsulation',
     instagram: '',  // e.g. 'https://www.instagram.com/yourhandle'
