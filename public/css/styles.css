@@ -473,3 +473,69 @@ fieldset.field { border: 0; margin: 16px 0 0; padding: 0; min-width: 0; }
   .mia-panel { width: calc(100vw - 24px); height: min(560px, calc(100vh - 190px)); }
 }
 @media print { .mia { display: none; } }
+
+/* =====================================================================
+   Dark theme (Oct 27): every content section sits on one deep green-charcoal.
+   Header stays white so the logo reads; forms and the assistant stay white cards.
+   ===================================================================== */
+:root {
+  --dk-bg: #122312;
+  --dk-surface: #1a301a;
+  --dk-line: rgba(233, 241, 231, .13);
+  --dk-text: #e9f1e7;
+  --dk-muted: #b3c4ae;
+}
+body { background: var(--dk-bg); color: var(--dk-text); }
+.band, .band-white, .band-frost, .band-spruce, .savings, .svc-detail { background: var(--dk-bg); color: var(--dk-text); }
+.band + .band, .band + .savings, .savings + .band,
+.svc-detail + .svc-detail, .svc-detail + .savings { border-top-color: var(--dk-line); }
+main .lede { color: var(--dk-muted); }
+
+/* headings + body copy on dark */
+.science blockquote h2, .system h3, .svc h3, .heat h2, .savings h2, .save h3, .about h2,
+.contact h2, .svc-detail h2, .svc-detail .fits-box h3, .section-head h2 { color: var(--white); }
+.system h3 svg { color: var(--brand); }
+.system { border-top-color: var(--brand); }
+.system > div + div, .system > div, .svc-list, .svc, .values, .values div, .readout, .readout div, .save-grid .save + .save { border-color: var(--dk-line); }
+.system p, .svc p, .svc .fits strong, .readout dd, .thermal-note, .save p:not(.big), .values dd, .people span,
+.svc-detail .fits-box ul, .contact .lede { color: var(--dk-muted); }
+.svc .fits, .readout dt, .values dt, .contact-list strong, .save .big span { color: var(--white); }
+.save .big { color: var(--brand); }
+.svc a.more, .save .ext, .heat .ext, .people a, .contact-list a { color: #6fcf63; text-decoration-color: var(--brand); }
+.contact-list { color: var(--dk-text); }
+.contact .socials { color: var(--dk-text); }
+
+/* surfaces */
+.ph, .ph.is-missing::after { background: var(--dk-surface); color: var(--dk-muted); }
+.cam { background: #0c180b; border: 1px solid var(--dk-line); }
+.reviews { background: var(--dk-surface); border-color: var(--dk-line); border-left-color: var(--brand); }
+.reviews h3 { color: var(--white); }
+.reviews p { color: var(--dk-muted); }
+.map { border-color: var(--dk-line); background: var(--dk-surface); }
+.contact .form-card, .quick-form { border-color: transparent; }
+
+/* buttons that were dark-on-light */
+.btn-spruce { background: var(--white); color: var(--spruce); }
+.btn-spruce:hover { background: #dfe9dc; }
+.btn-line-dark { border-color: rgba(255, 255, 255, .7); color: var(--white); }
+.btn-line-dark:hover { background: rgba(255, 255, 255, .08); }
+
+/* forms stay light so they pop */
+.form-card, .quick-form { background: var(--white); color: var(--ink); }
+.form-card h3, .quick-head h2, .quick-form .form-done h3 { color: var(--spruce); }
+.form-card > p, .quick-head p, .quick-form .form-done p, .form-actions small, .field .opt { color: var(--muted); }
+.form-card a, .quick-form a { color: var(--brand-deep); }
+
+/* services page jump nav */
+.jump { background: #0e1c0e; border-bottom-color: var(--dk-line); }
+.jump a { color: var(--white); border-color: var(--dk-line); }
+.jump a:hover { border-color: var(--brand); }
+
+/* footer: a touch darker than the page so it still reads as the end */
+.site-footer { background: #0a1509; border-top: 1px solid var(--dk-line); }
+.legal { border-top-color: var(--dk-line); }
+
+/* mobile call bar matches the theme */
+.callbar { background: #0e1c0e; border-top-color: var(--dk-line); box-shadow: none; }
+.callbar .btn-spruce { background: var(--white); color: var(--spruce); }
+main .hero .lede, main .page-hero .lede { color: var(--on-dark); }
