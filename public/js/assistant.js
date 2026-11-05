@@ -14,7 +14,7 @@
     rebates: {
       label: 'Efficiency Maine rebates',
       keys: /rebate|efficiency maine|incentive|money back|tax credit/i,
-      text: 'We’re an Efficiency Maine Registered Vendor. Efficiency Maine only pays its insulation and air sealing rebates when a registered vendor does the work. Qualifying existing Maine homes can get up to $8,600 back over the life of the home. New construction doesn’t qualify. We’ll go over what your house qualifies for.',
+      text: 'Efficiency Maine offers rebates on insulation and air sealing for many existing Maine homes. Who qualifies depends on the house, your income and who installs the work, and the rules change often. Ask us and we’ll go over your options with you. You can also check Efficiency Maine’s current rules:',
       link: { href: REBATE_URL, label: 'Efficiency Maine’s rebate rules' },
       start: { rebate: 'yes' },
     },
