@@ -98,13 +98,44 @@
     try { sessionStorage.setItem(TRACK_KEY, JSON.stringify(track)); } catch (_) { /* fine without it */ }
   }
 
-  /* Estimate forms (quick hero form + full form share one handler) */
+  /* The one estimate form (#estimate-form). Every "estimate" button on the site links here.
+     Prefill from the link (?service=…, ?rebate=1, ?discount=…) or from the assistant (window.miPrefill). */
   const params = new URLSearchParams(location.search);
   const full = $('#estimate-form');
+  const prefill = (opts = {}) => {
+    if (!full) return false;
+    (opts.services || []).forEach((key) => {
+      const box = $(`input[name="services"][data-key="${CSS.escape(key)}"]`, full) || $$('input[name="services"]', full).find((b) => b.value === key);
+      if (box) box.checked = true;
+    });
+    if (opts.rebate) { const r = $('input[name="rebate"]', full); if (r) r.checked = true; }
+    if (opts.discount) { const d = $('select[name="discount"]', full); if (d) d.value = opts.discount; }
+    return true;
+  };
+  const focusForm = () => {
+    if (!full) return;
+    const first = full.elements.name;
+    if (first) setTimeout(() => first.focus({ preventScroll: true }), 450);
+  };
+  window.miPrefill = (opts = {}) => {
+    if (!prefill(opts)) {
+      const q = new URLSearchParams();
+      if (opts.services && opts.services[0]) q.set('service', opts.services[0]);
+      if (opts.rebate) q.set('rebate', '1');
+      if (opts.discount) q.set('discount', opts.discount);
+      location.href = `/${q.toString() ? `?${q}` : ''}#estimate`;
+      return;
+    }
+    document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
+    focusForm();
+  };
   if (full) {
-    const svc = params.get('service');
-    if (svc) { const box = $(`input[name="services"][data-key="${CSS.escape(svc)}"]`, full); if (box) box.checked = true; }
-    if (params.get('rebate')) { const r = $('input[name="rebate"]', full); if (r) r.checked = true; }
+    prefill({ services: params.get('service') ? [params.get('service')] : [], rebate: params.get('rebate'), discount: params.get('discount') });
+    if (location.hash === '#estimate') focusForm();
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href="#estimate"], a[href="/#estimate"]');
+      if (a) focusForm();
+    });
   }
 
   $$('form[data-form]').forEach((form) => {
@@ -130,8 +161,7 @@
       const name = (data.name || '').trim(), phone = (data.phone || '').trim(), email = (data.email || '').trim();
       let bad = false;
       if (!name) { showErr('name', 'Add your name so we know who to ask for.'); bad = true; }
-      if (kind === 'quick' && !phone) { showErr('phone', 'Add a phone number so we can call you back.'); bad = true; }
-      if (kind === 'full' && !phone && !email) { showErr('phone', 'Add a phone number or email so we can reach you.'); bad = true; }
+      if (!phone && !email) { showErr('phone', 'Add a phone number or email so we can reach you.'); bad = true; }
       if (bad) { form.querySelector('[aria-invalid="true"]').focus(); return; }
 
       const btn = $('button[type="submit"]', form);
@@ -145,11 +175,8 @@
           throw new Error(out.error || 'Check the highlighted fields and send again.');
         }
         const first = name.split(' ')[0].replace(/[<>&"]/g, '');
-        form.innerHTML = kind === 'quick'
-          ? `<div class="form-done" role="status" tabindex="-1"><h3>Thanks${first ? `, ${first}` : ''}. Scott will call you back.</h3>
-             <p>Calls go out Monday–Friday, 7am–5pm. Need us now? Call <a href="${SITE.phoneHref}">${SITE.phone}</a>.</p></div>`
-          : `<div class="form-done" role="status" tabindex="-1"><h3>Request sent${first ? `, ${first}` : ''}.</h3>
-             <p>The Mainely team will reach out to set up your estimate. Need us sooner? Call <a href="${SITE.phoneHref}">${SITE.phone}</a>.</p></div>`;
+        form.innerHTML = `<div class="form-done" role="status" tabindex="-1"><h3>Request sent${first ? `, ${first}` : ''}. Scott will call you back.</h3>
+             <p>Calls go out Monday–Friday, 7am–5pm. Need us sooner? Call <a href="${SITE.phoneHref}">${SITE.phone}</a>.</p></div>`;
         $('.form-done', form).focus();
       } catch (err) {
         statusEl.textContent = err.message === 'Failed to fetch'
