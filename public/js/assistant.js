@@ -14,7 +14,7 @@
     rebates: {
       label: 'Efficiency Maine rebates',
       keys: /rebate|efficiency maine|incentive|money back|tax credit/i,
-      text: 'Efficiency Maine offers rebates on insulation and air sealing for many existing Maine homes. Who qualifies depends on the house, your income and who installs the work, and the rules change often. Ask us and we’ll go over your options with you. You can also check Efficiency Maine’s current rules:',
+      text: 'Efficiency Maine offers rebates on insulation and air sealing for qualifying existing Maine homes, up to $8,600 over the life of the home. New construction doesn’t qualify. We help our customers with the rebate process and can go over what your project could qualify for.',
       link: { href: REBATE_URL, label: 'Efficiency Maine’s rebate rules' },
       start: { rebate: 'yes' },
     },
